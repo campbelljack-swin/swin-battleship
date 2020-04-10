@@ -57,15 +57,15 @@ public class Player : Ship
         }
     }
 
-    public Player(BattleShipsGame controller)
+    public Player(BattleShipsGame controller) : base(ShipName.None)
     {
         _game = controller;
 
         // for each ship add the ships name so the seagrid knows about them
-        foreach (ShipName name in Enum.GetValues(typeof(ShipName)))
+        foreach (ShipName Name in Enum.GetValues(typeof(ShipName)))
         {
-            if (name != ShipName.None)
-                _Ships.Add(name, new Ship(name));
+            if (Name != ShipName.None)
+                _Ships.Add(Name, new Ship(Name));
         }
 
         RandomizeDeployment();
@@ -108,7 +108,7 @@ public class Player : Ship
         }
     }
 
-    public bool IsDestroyed
+    public override bool IsDestroyed
     {
         get
         {
@@ -120,7 +120,7 @@ public class Player : Ship
     /// <summary>
     ///     ''' Returns the Player's ship with the given name.
     ///     ''' </summary>
-    ///     ''' <param name="name">the name of the ship to return</param>
+    //     ''' <param name="name">the name of the ship to return</param>
     ///     ''' <value>The ship</value>
     ///     ''' <returns>The ship with the indicated name</returns>
     ///     ''' <remarks>The none ship returns nothing/null</remarks>
@@ -131,7 +131,9 @@ public class Player : Ship
             if (Name == ShipName.None.ToString())
                 return null/* TODO Change to default(_) if this is not a reference type */;
 
-            return _Ships[Name];//.Item[Name];
+            Enum.TryParse(Name, out ShipName name);
+
+            return _Ships[name];//.Item[Name];
         }
     }
 
@@ -200,7 +202,7 @@ public class Player : Ship
     ///     ''' has.
     ///     ''' </summary>
     ///     ''' <returns>A Ship enumerator</returns>
-    public IEnumerator GetEnumerator()
+    public IEnumerator<Ship> GetEnumerator()
     {
         Ship[] result = new Ship[_Ships.Values.Count + 1];
         _Ships.Values.CopyTo(result, 0);

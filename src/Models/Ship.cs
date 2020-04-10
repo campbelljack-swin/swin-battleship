@@ -107,7 +107,7 @@ public class Ship
         _tiles = new List<Tile>();
 
         // gets the ship size from the enumarator
-        _sizeOfShip = _shipName;
+        _sizeOfShip = (int)_shipName.GetTypeCode();
     }
 
     /// <summary>
@@ -146,7 +146,7 @@ public class Ship
         }
     }
 
-    public bool IsDestroyed
+    public virtual bool IsDestroyed
     {
         get
         {

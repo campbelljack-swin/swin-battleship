@@ -64,8 +64,8 @@ public abstract class AIPlayer : Player
         /// <summary>
         ///         ''' Sets the last hit made to the local variables
         ///         ''' </summary>
-        ///         ''' <param name="row">the row of the location</param>
-        ///         ''' <param name="column">the column of the location</param>
+        //         ''' <param name="row">the row of the location</param>
+        //         ''' <param name="column">the column of the location</param>
         public Location(int row, int column)
         {
             _Column = column;
@@ -75,13 +75,14 @@ public abstract class AIPlayer : Player
         /// <summary>
         ///         ''' Check if two locations are equal
         ///         ''' </summary>
-        ///         ''' <param name="this">location 1</param>
-        ///         ''' <param name="other">location 2</param>
+        //        ''' <param name="this">location 1</param>
+        //        ''' <param name="other">location 2</param>
         ///         ''' <returns>true if location 1 and location 2 are at the same spot</returns>
         public static bool operator ==(Location @this, Location other)
         {
             return @this != null && other != null && @this.Row == other.Row && @this.Column == other.Column;
         }
+
 
         /// <summary>
         ///         ''' Check if two locations are not equal
@@ -103,17 +104,17 @@ public abstract class AIPlayer : Player
     /// <summary>
     ///     ''' Generate a valid row, column to shoot at
     ///     ''' </summary>
-    ///     ''' <param name="row">output the row for the next shot</param>
-    ///     ''' <param name="column">output the column for the next show</param>
+    //     ''' <param name="row">output the row for the next shot</param>
+    //     ''' <param name="column">output the column for the next show</param>
     protected abstract void GenerateCoords(ref int row, ref int column);
 
     /// <summary>
     ///     ''' The last shot had the following result. Child classes can use this
     ///     ''' to prepare for the next shot.
     ///     ''' </summary>
-    ///     ''' <param name="result">The result of the shot</param>
-    ///     ''' <param name="row">the row shot</param>
-    ///     ''' <param name="col">the column shot</param>
+    //     ''' <param name="result">The result of the shot</param>
+    //     ''' <param name="row">the row shot</param>
+    //     ''' <param name="col">the column shot</param>
     protected abstract void ProcessShot(int row, int col, AttackResult result);
 
     /// <summary>

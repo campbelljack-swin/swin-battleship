@@ -206,7 +206,7 @@ public static class GameResources
         const int BG_Y = 453;
 
         int fullW;
-        Rectangle toDraw;
+        Rectangle toDraw = new Rectangle();
 
         fullW = 260 * number / STEPS;
         SwinGame.DrawBitmap(_LoaderEmpty, BG_X, BG_Y);
@@ -235,7 +235,7 @@ public static class GameResources
         SwinGame.FreeBitmap(_Animation);
         SwinGame.FreeBitmap(_LoaderEmpty);
         SwinGame.FreeBitmap(_LoaderFull);
-        Audio.FreeSoundEffect(_StartSound);
+        //Audio.FreeSoundEffect(_StartSound);
         SwinGame.ChangeScreenSize(width, height);
     }
 

@@ -24,8 +24,8 @@ public class BattleShipsGame
     ///     ''' The attack delegate type is used to send notifications of the end of an
     ///     ''' attack by a player or the AI.
     ///     ''' </summary>
-    ///     ''' <param name="sender">the game sending the notification</param>
-    ///     ''' <param name="result">the result of the attack</param>
+    //     ''' <param name="sender">the game sending the notification</param>
+    //     ''' <param name="result">the result of the attack</param>
     public delegate void AttackCompletedHandler(object sender, AttackResult result);
 
     /// <summary>

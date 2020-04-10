@@ -151,7 +151,7 @@ public class AIHardPlayer : AIPlayer
                 default:
                     {
                         throw new ApplicationException("AI has gone in an invalid state");
-                        break;
+                        //break;
                     }
             }
         }
