@@ -133,18 +133,23 @@ public class SeaGrid : ISeaGrid
 			int dRow;
 			int dCol;
 
-			if (direction == Direction.LeftRight) {
+			if (direction == Direction.LeftRight)
+			{
 				dRow = 0;
 				dCol = 1;
-			} else {
+			}
+			else
+			{
 				dRow = 1;
 				dCol = 0;
 			}
 
 			//place ship's tiles in array and into ship object
 			int i;
-			for (i = 0; i <= size - 1; i++) {
-				if (currentRow < 0 | currentRow >= Width | currentCol < 0 | currentCol >= Height) {
+			for (i = 0; i <= size - 1; i++)
+			{
+				if (currentRow < 0 | currentRow >= Width | currentCol < 0 | currentCol >= Height)
+				{
 					throw new InvalidOperationException("Ship can't fit on the board");
 				}
 
@@ -161,7 +166,8 @@ public class SeaGrid : ISeaGrid
 			throw new ApplicationException(e.Message);
 
 		} finally {
-			if (Changed != null) {
+			if (Changed != null)
+			{
 				Changed(this, EventArgs.Empty);
 			}
 		}
@@ -176,21 +182,25 @@ public class SeaGrid : ISeaGrid
 	/// <returns>An attackresult (hit, miss, sunk, shotalready)</returns>
 	public AttackResult HitTile(int row, int col)
 	{
-		try {
+		try
+		{
 			//tile is already hit
-			if (_GameTiles[row, col].Shot) {
+			if (_GameTiles[row, col].Shot)
+			{
 				return new AttackResult(ResultOfAttack.ShotAlready, "have already attacked [" + col + "," + row + "]!", row, col);
 			}
 
 			_GameTiles[row, col].Shoot();
 
 			//there is no ship on the tile
-			if (_GameTiles[row, col].Ship == null) {
+			if (_GameTiles[row, col].Ship == null)
+			{
 				return new AttackResult(ResultOfAttack.Miss, "missed", row, col);
 			}
 
 			//all ship's tiles have been destroyed
-			if (_GameTiles[row, col].Ship.IsDestroyed) {
+			if (_GameTiles[row, col].Ship.IsDestroyed)
+			{
 				_GameTiles[row, col].Shot = true;
 				_ShipsKilled += 1;
 				return new AttackResult(ResultOfAttack.Destroyed, _GameTiles[row, col].Ship, "destroyed the enemy's", row, col);
@@ -198,8 +208,11 @@ public class SeaGrid : ISeaGrid
 
 			//else hit but not destroyed
 			return new AttackResult(ResultOfAttack.Hit, "hit something!", row, col);
-		} finally {
-			if (Changed != null) {
+		}
+		finally
+		{
+			if (Changed != null)
+			{
 				Changed(this, EventArgs.Empty);
 			}
 		}

@@ -124,7 +124,9 @@ static class HighScoreController
         const int SCORE_GAP = 30;
 
         if (_Scores.Count == 0)
+	{
             LoadScores();
+	}
 
         SwinGame.DrawText("   High Scores   ", Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, SCORES_HEADING);
 
@@ -138,9 +140,13 @@ static class HighScoreController
 
             // for scores 1 - 9 use 01 - 09
             if (i < 9)
+	    {
                 SwinGame.DrawText(" " + (i + 1) + ":   " + s.Name + "   " + s.Value, Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+	    }
             else
+	    {
                 SwinGame.DrawText(i + 1 + ":   " + s.Name + "   " + s.Value, Color.White, GameResources.GameFont("Courier"), SCORES_LEFT, SCORES_TOP + i * SCORE_GAP);
+	    }
         }
     }
 
@@ -151,7 +157,9 @@ static class HighScoreController
     public static void HandleHighScoreInput()
     {
         if (SwinGame.MouseClicked(MouseButton.LeftButton) || SwinGame.KeyTyped(KeyCode.EscapeKey) || SwinGame.KeyTyped(KeyCode.ReturnKey))
+	{
             GameController.EndCurrentState();
+	}
     }
 
     /// <summary>
@@ -166,7 +174,9 @@ static class HighScoreController
         const int ENTRY_TOP = 500;
 
         if (_Scores.Count == 0)
+	{
             LoadScores();
+	}
 
         // is it a high score
         if (value > _Scores[_Scores.Count - 1].Value)
@@ -195,7 +205,9 @@ static class HighScoreController
             s.Name = SwinGame.TextReadAsASCII();
 
             if (s.Name.Length < 3)
+	    {
                 s.Name = s.Name + new string(System.Convert.ToChar(" "), 3 - s.Name.Length);
+	    }
 
             _Scores.RemoveAt(_Scores.Count - 1);
             _Scores.Add(s);

@@ -69,7 +69,9 @@ static class UtilityFunctions
         {
             // Check vertical position
             if (mouse.Y >= y & mouse.Y <= y + h)
+	    {
                 result = true;
+	    }
         }
 
         return result;
@@ -150,27 +152,39 @@ static class UtilityFunctions
                     case TileView.Miss:
                         {
                             if (small)
+			    {
                                 fillColor = SMALL_MISS;
+			    }
                             else
+			    {
                                 fillColor = LARGE_MISS;
+			    }
                             break;
                         }
 
                     case TileView.Hit:
                         {
                             if (small)
+			    {
                                 fillColor = SMALL_HIT;
+			    }
                             else
+			    {
                                 fillColor = LARGE_HIT;
+			    }
                             break;
                         }
 
                     case TileView.Sea:
                         {
                             if (small)
+			    {
                                 fillColor = SMALL_SEA;
+			    }
                             else
+			    {
                                 draw = false;
+			    }
                             break;
                         }
                 }
@@ -179,7 +193,9 @@ static class UtilityFunctions
                 {
                     SwinGame.FillRectangle(fillColor, colLeft, rowTop, cellWidth, cellHeight);
                     if (!small)
+		    {
                         SwinGame.DrawRectangle(OUTLINE_COLOR, colLeft, rowTop, cellWidth, cellHeight);
+		    }
                 }
             }
         }
@@ -194,7 +210,9 @@ static class UtilityFunctions
         foreach (Ship s in thePlayer)
         {
             if (s == null || !s.IsDeployed)
+	    {
                 continue;
+	    }
             rowTop = top + (cellGap + cellHeight) * s.Row + SHIP_GAP;
             colLeft = left + (cellGap + cellWidth) * s.Column + SHIP_GAP;
 
@@ -213,7 +231,9 @@ static class UtilityFunctions
             }
 
             if (!small)
+	    {
                 SwinGame.DrawBitmap(GameResources.GameImage(shipName), colLeft, rowTop);
+	    }
             else
             {
                 SwinGame.FillRectangle(SHIP_FILL_COLOR, colLeft, rowTop, shipWidth, shipHeight);
@@ -326,7 +346,9 @@ static class UtilityFunctions
         {
             SwinGame.UpdateSprite(s);
             if (s.AnimationHasEnded)
+	    {
                 ended.Add(s);
+	    }
         }
 
         foreach (Sprite s in ended)
@@ -339,7 +361,9 @@ static class UtilityFunctions
     public static void DrawAnimations()
     {
         foreach (Sprite s in _Animations)
+	{
             SwinGame.DrawSprite(s);
+	}
     }
 
     public static void DrawAnimationSequence()

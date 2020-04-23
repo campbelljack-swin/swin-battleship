@@ -31,7 +31,8 @@ public class Tile
 	/// </summary>
 	/// <value>indicate if the tile has been shot</value>
 	/// <returns>true if the tile was shot</returns>
-	public bool Shot {
+	public bool Shot
+	{
 		get { return _Shot; }
 		set { _Shot = value; }
 	}
@@ -41,7 +42,8 @@ public class Tile
 	/// </summary>
 	/// <value>the row index of the tile in the grid</value>
 	/// <returns>the row index of the tile</returns>
-	public int Row {
+	public int Row
+	{
 		get { return _RowValue; }
 	}
 
@@ -50,22 +52,32 @@ public class Tile
 	/// </summary>
 	/// <value>the column of the tile in the grid</value>
 	/// <returns>the column of the tile in the grid</returns>
-	public int Column {
+	public int Column
+	{
 		get { return _ColumnValue; }
 	}
 
 	/// <summary>
 	/// Ship allows for a tile to check if there is ship and add a ship to a tile
 	/// </summary>
-	public Ship Ship {
-		get { return _Ship; }
-		set {
-			if (_Ship == null) {
+	public Ship Ship
+	{
+		get
+		{
+			return _Ship;
+		}
+		set
+		{
+			if (_Ship == null)
+			{
 				_Ship = value;
-				if (value != null) {
+				if (value != null)
+				{
 					_Ship.AddTile(this);
 				}
-			} else {
+			}
+			else
+			{
 				throw new InvalidOperationException("There is already a ship at [" + Row + ", " + Column + "]");
 			}
 		}
@@ -95,23 +107,34 @@ public class Tile
 	/// <summary>
 	/// View is able to tell the grid what the tile is
 	/// </summary>
-	public TileView View {
-		get {
+	public TileView View
+	{
+		get
+		{
 			//if there is no ship in the tile
-			if (_Ship == null) {
+			if (_Ship == null)
+			{
 				//and the tile has been hit
 
-				if (_Shot) {
+				if (_Shot)
+				{
 					return TileView.Miss;
-				} else {
+				}
+				else
+				{
 					//and the tile hasn't been hit
 					return TileView.Sea;
 				}
-			} else {
+			}
+			else
+			{
 				//if there is a ship and it has been hit
-				if ((_Shot)) {
+				if ((_Shot))
+				{
 					return TileView.Hit;
-				} else {
+				}
+				else
+				{
 					//if there is a ship and it hasn't been hit
 					return TileView.Ship;
 				}
@@ -125,12 +148,16 @@ public class Tile
 	/// </summary>
 	internal void Shoot()
 	{
-		if ((false == Shot)) {
+		if ((false == Shot))
+		{
 			Shot = true;
-			if (_Ship != null) {
+			if (_Ship != null)
+			{
 				_Ship.Hit();
 			}
-		} else {
+		}
+		else
+		{
 			throw new ApplicationException("You have already shot this square");
 		}
 	}

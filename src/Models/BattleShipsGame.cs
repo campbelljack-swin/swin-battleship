@@ -61,14 +61,18 @@ public class BattleShipsGame
     public void AddDeployedPlayer(Player p)
     {
         if (_players[0] == null)
+	{
             _players[0] = p;
+	}
         else if (_players[1] == null)
         {
             _players[1] = p;
             CompleteDeployment();
         }
         else
+	{
             throw new ApplicationException("You cannot add another player, the game already has two players.");
+	}
     }
 
     /// <summary>
@@ -97,13 +101,17 @@ public class BattleShipsGame
 
         // Will exit the game when all players ships are destroyed
         if (_players[otherPlayer].IsDestroyed)
+	{
             newAttack = new AttackResult(ResultOfAttack.GameOver, newAttack.Ship, newAttack.Text, row, col);
+	}
 
         AttackCompleted?.Invoke(this, newAttack);
 
         // change player if the last hit was a miss
         if (newAttack.Value == ResultOfAttack.Miss)
+	{
             _playerIndex = otherPlayer;
+	}
 
         return newAttack;
     }

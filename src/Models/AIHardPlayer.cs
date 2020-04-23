@@ -222,7 +222,9 @@ public class AIHardPlayer : AIPlayer
         }
 
         if (_Targets.Count == 0)
+	{
             _CurrentState = AIStates.Searching;
+	}
     }
 
     /// <summary>
@@ -292,18 +294,24 @@ public class AIHardPlayer : AIPlayer
 
             // if the source of the target does not belong to the destroyed ship put them on the newStack
             if (t.Source != toRemove)
+	    {
                 newStack.Push(t);
+	    }
         }
 
         _Targets.Clear();   // clear the _Targets stack
 
         // for all the targets in the newStack, move them back onto the _Targets stack
         foreach (Target t in newStack)
+	{
             _Targets.Push(t);
+	}
 
         // if the _Targets stack is 0 then change the AI's state back to searching
         if (_Targets.Count == 0)
+	{
             _CurrentState = AIStates.Searching;
+	}
     }
 
     /// <summary>
@@ -326,7 +334,9 @@ public class AIHardPlayer : AIPlayer
         AddTarget(row, col + 1);
 
         if (_CurrentState == AIStates.Searching)
+	{
             _CurrentState = AIStates.TargetingShip;
+	}
         else
         {
             // either targetting or hitting... both are the same here
@@ -345,10 +355,14 @@ public class AIHardPlayer : AIPlayer
 
         // if the ship is lying on the same row, call MoveToTopOfStack to optimise on the row
         if (_CurrentTarget.SameRow)
+	{
             MoveToTopOfStack(_CurrentTarget.ShotAt.Row, -1);
+	}
         else if (_CurrentTarget.SameColumn)
+	{
             // else if the ship is lying on the same column, call MoveToTopOfStack to optimise on the column
             MoveToTopOfStack(-1, _CurrentTarget.ShotAt.Column);
+	}
     }
 
     /// <summary>
@@ -372,15 +386,23 @@ public class AIHardPlayer : AIPlayer
         {
             current = _Targets.Pop();
             if (current.ShotAt.Row == row || current.ShotAt.Column == column)
+	    {
                 _Match.Push(current);
+	    }
             else
+	    {
                 _NoMatch.Push(current);
+	    }
         }
 
         foreach (Target t in _NoMatch)
+	{
             _Targets.Push(t);
+	}
         foreach (Target t in _Match)
+	{
             _Targets.Push(t);
+	}
     }
 
     /// <summary>
@@ -391,7 +413,8 @@ public class AIHardPlayer : AIPlayer
     private void AddTarget(int row, int column)
     {
         if (row >= 0 && column >= 0 && row < EnemyGrid.Height && column < EnemyGrid.Width && EnemyGrid.Item(row, column) == TileView.Sea)
-
+	{
             _Targets.Push(new Target(new Location(row, column), _CurrentTarget.ShotAt));
+	}
     }
 }

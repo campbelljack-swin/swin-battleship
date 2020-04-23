@@ -56,34 +56,56 @@ static class DeploymentController
     public static void HandleDeploymentInput()
     {
         if (SwinGame.KeyTyped(KeyCode.EscapeKey))
+	{
             GameController.AddNewState(GameState.ViewingGameMenu);
+	}
 
         if (SwinGame.KeyTyped(KeyCode.UpKey) | SwinGame.KeyTyped(KeyCode.DownKey))
+	{
             _currentDirection = Direction.UpDown;
+	}
         if (SwinGame.KeyTyped(KeyCode.LeftKey) | SwinGame.KeyTyped(KeyCode.RightKey))
+	{
             _currentDirection = Direction.LeftRight;
+	}
 
         if (SwinGame.KeyTyped(KeyCode.RKey))
+	{
             GameController.HumanPlayer.RandomizeDeployment();
+	}
 
         if (SwinGame.MouseClicked(MouseButton.LeftButton))
         {
             ShipName selected;
             selected = GetShipMouseIsOver();
             if (selected != ShipName.None)
+	    {
                 _selectedShip = selected;
+	    }
             else
+	    {
                 DoDeployClick();
+	    }
 
             if (GameController.HumanPlayer.ReadyToDeploy & UtilityFunctions.IsMouseInRectangle(PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP, PLAY_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
+	    {
                 GameController.EndDeployment();
+	    }
             else if (UtilityFunctions.IsMouseInRectangle(UP_DOWN_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
+	    {
                 _currentDirection = Direction.LeftRight;
+	    }
             else if (UtilityFunctions.IsMouseInRectangle(LEFT_RIGHT_BUTTON_LEFT, TOP_BUTTONS_TOP, DIR_BUTTONS_WIDTH, TOP_BUTTONS_HEIGHT))
+	    {
                 _currentDirection = Direction.LeftRight;
+	    }
             else if (UtilityFunctions.IsMouseInRectangle(RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP, RANDOM_BUTTON_WIDTH, TOP_BUTTONS_HEIGHT))
+	    {
                 GameController.HumanPlayer.RandomizeDeployment();
+	    }
+	    {
         }
+	}
     }
 
     /// <summary>
@@ -150,7 +172,9 @@ static class DeploymentController
         }
 
         if (GameController.HumanPlayer.ReadyToDeploy)
+	{
             SwinGame.DrawBitmap(GameResources.GameImage("PlayButton"), PLAY_BUTTON_LEFT, TOP_BUTTONS_TOP);
+	}
 
         SwinGame.DrawBitmap(GameResources.GameImage("RandomButton"), RANDOM_BUTTON_LEFT, TOP_BUTTONS_TOP);
 
@@ -169,7 +193,9 @@ static class DeploymentController
             i = (int)sn - 1;
 
             if (UtilityFunctions.IsMouseInRectangle(SHIPS_LEFT, SHIPS_TOP + i * SHIPS_HEIGHT, SHIPS_WIDTH, SHIPS_HEIGHT))
+	    {
                 return sn;
+	    }
         }
 
         return ShipName.None;

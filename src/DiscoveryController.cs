@@ -30,10 +30,14 @@ static class DiscoveryController
     public static void HandleDiscoveryInput()
     {
         if (SwinGame.KeyTyped(KeyCode.EscapeKey))
+	{
             GameController.AddNewState(GameState.ViewingGameMenu);
+	}
 
         if (SwinGame.MouseClicked(MouseButton.LeftButton))
+	{
             DoAttack();
+	}
     }
 
     /// <summary>
@@ -53,7 +57,9 @@ static class DiscoveryController
         if (row >= 0 & row < GameController.HumanPlayer.EnemyGrid.Height)
         {
             if (col >= 0 & col < GameController.HumanPlayer.EnemyGrid.Width)
+	    {
                 GameController.Attack(row, col);
+	    }
         }
     }
 
@@ -68,9 +74,13 @@ static class DiscoveryController
         const int SPLASH_TOP = 256;
 
         if ((SwinGame.KeyDown(KeyCode.LeftShiftKey) | SwinGame.KeyDown(KeyCode.RightShiftKey)) & SwinGame.KeyDown(KeyCode.CKey))
+	{
             UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, true);
+	}
         else
+	{
             UtilityFunctions.DrawField(GameController.HumanPlayer.EnemyGrid, GameController.ComputerPlayer, false);
+	}
 
         UtilityFunctions.DrawSmallField(GameController.HumanPlayer.PlayerGrid, GameController.HumanPlayer);
         UtilityFunctions.DrawMessage();

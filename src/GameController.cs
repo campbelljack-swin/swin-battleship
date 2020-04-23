@@ -42,7 +42,9 @@ public class GameController
         get
         {
             if(_state.Count != 0)
+	    {
                 return _state.Peek();
+	    }
             return GameState.ViewingMainMenu;
         }
     }
@@ -91,7 +93,9 @@ public class GameController
     public static void StartGame()
     {
         if (_theGame != null)
+	{
             EndGame();
+	}
 
         // Create the game
         _theGame = new BattleShipsGame();
@@ -153,7 +157,9 @@ public class GameController
     private static void PlayHitSequence(int row, int column, bool showAnimation)
     {
         if (showAnimation)
+	{
             UtilityFunctions.AddExplosion(row, column);
+	}
 
         Audio.PlaySoundEffect(GameResources.GameSound("Hit"));
 
@@ -163,7 +169,9 @@ public class GameController
     private static void PlayMissSequence(int row, int column, bool showAnimation)
     {
         if (showAnimation)
+	{
             UtilityFunctions.AddSplash(row, column);
+	}
 
         Audio.PlaySoundEffect(GameResources.GameSound("Miss"));
 
@@ -185,9 +193,13 @@ public class GameController
         isHuman = _theGame.Player == HumanPlayer;
 
         if (isHuman)
+	{
             Console.WriteLine("You " + result.ToString());
+	}
         else
+	{
             Console.WriteLine("The AI " + result.ToString());
+	}
 
         switch (result.Value)
         {
@@ -210,9 +222,13 @@ public class GameController
                     }
 
                     if (HumanPlayer.IsDestroyed)
+		    {
                         Audio.PlaySoundEffect(GameResources.GameSound("Lose"));
+		    }
                     else
+		    {
                         Audio.PlaySoundEffect(GameResources.GameSound("Winner"));
+		    }
                     break;
                 }
 
@@ -296,7 +312,9 @@ public class GameController
             case ResultOfAttack.Miss:
                 {
                     if (_theGame.Player == ComputerPlayer)
+		    {
                         AIAttack();
+		    }
                     break;
                 }
 
@@ -456,7 +474,9 @@ public class GameController
     public static void EndCurrentState()
     {
         if(_state.Count != 0)
+	{
             _state.Pop();
+	}
     }
 
     /// <summary>

@@ -79,7 +79,9 @@ static class MenuController
         handled = HandleMenuInput(SETUP_MENU, 1, 1);
 
         if (!handled)
+	{
             HandleMenuInput(MAIN_MENU, 0, 0);
+	}
     }
 
     /// <summary>
@@ -122,8 +124,10 @@ static class MenuController
             }
 
             if (level > 0)
+	    {
                 // none clicked - so end this sub menu
                 GameController.EndCurrentState();
+	    }
         }
 
         return false;
@@ -207,7 +211,9 @@ static class MenuController
             SwinGame.DrawText(_menuStructure[menu][i], MENU_COLOR, Color.Black, GameResources.GameFont("Menu"), FontAlignment.AlignCenter, toDraw);
 
             if (SwinGame.MouseDown(MouseButton.LeftButton) & IsMouseOverMenu(i, level, xOffset))
+	    {
                 SwinGame.DrawRectangle(HIGHLIGHT_COLOR, btnLeft, btnTop, BUTTON_WIDTH, BUTTON_HEIGHT);
+	    }
         }
     }
 

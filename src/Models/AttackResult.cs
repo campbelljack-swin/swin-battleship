@@ -114,7 +114,9 @@ public class AttackResult
     public override string ToString()
     {
         if (_Ship == null)
+	{
             return Text;
+	}
 
         return Text + " " + _Ship.Name;
     }

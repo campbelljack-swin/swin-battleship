@@ -82,7 +82,9 @@ public class AIMediumPlayer : AIPlayer
         Location l = _Targets.Pop();
 
         if ((_Targets.Count == 0))
+	{
             _CurrentState = AIStates.Searching;
+	}
         row = l.Row;
         column = l.Column;
     }
@@ -117,7 +119,9 @@ public class AIMediumPlayer : AIPlayer
             AddTarget(row, col + 1);
         }
         else if (result.Value == ResultOfAttack.ShotAlready)
+	{
             throw new ApplicationException("Error in AI");
+	}
     }
 
     /// <summary>
@@ -128,7 +132,8 @@ public class AIMediumPlayer : AIPlayer
     private void AddTarget(int row, int column)
     {
         if (row >= 0 && column >= 0 && row < EnemyGrid.Height && column < EnemyGrid.Width && EnemyGrid.Item(row, column) == TileView.Sea)
-
+	{
             _Targets.Push(new Location(row, column));
+	}
     }
 }

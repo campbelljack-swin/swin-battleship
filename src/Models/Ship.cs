@@ -39,7 +39,9 @@ public class Ship
         get
         {
             if (_shipName == ShipName.AircraftCarrier)
+	    {
                 return "Aircraft Carrier";
+	    }
 
             return _shipName.ToString();
         }
@@ -125,7 +127,9 @@ public class Ship
     public void Remove()
     {
         foreach (Tile tile in _tiles)
+	{
             tile.ClearShip();
+	}
         _tiles.Clear();
     }
 

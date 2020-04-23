@@ -129,7 +129,9 @@ public class Player : Ship
         get
         {
             if (Name == ShipName.None.ToString())
+	    {
                 return null/* TODO Change to default(_) if this is not a reference type */;
+	    }
 
             Enum.TryParse(Name, out ShipName name);
 
@@ -176,9 +178,13 @@ public class Player : Ship
         get
         {
             if (IsDestroyed)
+	    {
                 return 0;
+	    }
             else
+	    {
                 return (Hits * 12) - Shots - (PlayerGrid.ShipsKilled * 20);
+	    }
         }
     }
 
@@ -261,7 +267,9 @@ public class Player : Ship
         foreach (ShipName shipToPlace in Enum.GetValues(typeof(ShipName)))
         {
             if (shipToPlace == ShipName.None)
+	    {
                 continue;
+	    }
 
             placementSuccessful = false;
 
@@ -272,9 +280,13 @@ public class Player : Ship
                 int x = _Random.Next(0, 11);
                 int y = _Random.Next(0, 11);
                 if (dir == 0)
+		{
                     heading = Direction.UpDown;
+		}
                 else
+		{
                     heading = Direction.LeftRight;
+		}
 
                 // try to place ship, if position unplaceable, generate new coordinates
                 try
