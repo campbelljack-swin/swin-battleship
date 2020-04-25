@@ -117,6 +117,7 @@ public class AIHardPlayer : AIPlayer
 
     public AIHardPlayer(BattleShipsGame game) : base(game)
     {
+        _CurrentTarget = null;
     }
 
     /// <summary>
@@ -183,7 +184,8 @@ public class AIHardPlayer : AIPlayer
     {
         row = _Random.Next(0, EnemyGrid.Height);
         column = _Random.Next(0, EnemyGrid.Width);
-        _CurrentTarget = new Target(new Location(row, column), null/* TODO Change to default(_) if this is not a reference type */);
+        //_CurrentTarget = new Target(new Location(row, column), null/* TODO Change to default(_) if this is not a reference type */);
+        _CurrentTarget = new Target(new Location(row, column), ( _CurrentTarget == null ? null : _CurrentTarget.ShotAt ) );
     }
 
     /// <summary>
