@@ -24,6 +24,7 @@ static class GameLogic
         GameResources.LoadResources();
 
         SwinGame.PlayMusic(GameResources.GameMusic("Background"));
+        GameController.GameControllerStart();
 
         // Game Loop
         do
@@ -31,7 +32,8 @@ static class GameLogic
             GameController.HandleUserInput();
             GameController.DrawScreen();
         }
-        while (!SwinGame.WindowCloseRequested() == true | GameController.CurrentState == GameState.Quitting);
+
+        while (!SwinGame.WindowCloseRequested() && GameController.CurrentState != GameState.Quitting);
 
         SwinGame.StopMusic();
 

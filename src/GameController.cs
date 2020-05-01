@@ -41,11 +41,11 @@ public class GameController
     {
         get
         {
-            if(_state.Count != 0)
-	    {
+            //if(_state.Count != 0)
+	    //{
                 return _state.Peek();
-	    }
-            return GameState.ViewingMainMenu;
+	    //}
+           // return GameState.ViewingMainMenu;
         }
     }
 
@@ -75,7 +75,7 @@ public class GameController
         }
     }
 
-    public GameController()
+    public static void GameControllerStart()
     {
         // bottom state will be quitting. If player exits main menu then the game is over
         _state.Push(GameState.Quitting);
@@ -473,10 +473,7 @@ public class GameController
     ///     ''' </summary>
     public static void EndCurrentState()
     {
-        if(_state.Count != 0)
-	{
-            _state.Pop();
-	}
+        _state.Pop();
     }
 
     /// <summary>

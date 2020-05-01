@@ -79,7 +79,7 @@ public static class GameResources
     /// <summary>
     ///     ''' Gets an Image loaded in the Resources
     ///     ''' </summary>
-    ///     ''' <param name="image">Name of image</param>
+    //     ''' <param name="image">Name of image</param>
     ///     ''' <returns>The image loaded with this name</returns>
 
     public static Bitmap GameImage(string image)
@@ -283,14 +283,14 @@ public static class GameResources
 
     private static void FreeSounds()
     {
-        foreach (SoundEffect obj in _Sounds.Values)
-            Audio.FreeSoundEffect(obj);
+        Audio.ReleaseAllSoundEffects();
     }
 
     private static void FreeMusic()
     {
-        foreach (Music obj in _Music.Values)
-            Audio.FreeMusic(obj);
+        Audio.ReleaseAllMusic();
+        //foreach (Music obj in _Music.Values)
+        //    Audio.FreeMusic(obj);
     }
 
     public static void FreeResources()
