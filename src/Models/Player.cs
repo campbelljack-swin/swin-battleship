@@ -226,7 +226,8 @@ public class Player : Ship
     public virtual AttackResult Attack()
     {
         // human does nothing here...
-        return null/* TODO Change to default(_) if this is not a reference type */;
+        AttackResult default_attack = null;
+        return default_attack;/* TODO Change to default(_) if this is not a reference type */
     }
 
     /// <summary>
