@@ -132,7 +132,7 @@ public class Player : Ship
         {
             if (Name == ShipName.None.ToString())
             {
-                return null/* TODO Change to default(_) if this is not a reference type */;
+                return default/* TODO Change to default(_) if this is not a reference type */;
             }
             Enum.TryParse(Name, out ShipName name);
 
